@@ -1,10 +1,7 @@
 import React from "react";
 import axios from "axios";
 import "./MainContent.scss";
-import tomato from "../../assets/tomato.jpg";
-import carrots from "../../assets/carrots.jpg";
-import potato from "../../assets/potato.jpg";
-import corn from "../../assets/corn.jpg";
+import Hero from "../Hero/Hero";
 
 class MainContent extends React.Component {
   constructor() {
@@ -22,6 +19,7 @@ class MainContent extends React.Component {
       });
     });
   }
+
   render() {
     if (!this.state.inventory) {
       return <div>Loading</div>;
@@ -30,15 +28,19 @@ class MainContent extends React.Component {
     console.log("HIIII", itemList);
     return (
       <div className="maincontent">
+        <Hero />
         <h1 className="mainheader">From Us to You</h1>
-
         <ul className="content-card-list">
           <div className="content-card">
             {itemList.map((item) => (
               <div>
                 <h1 className="content-card__header">All Organic {item.A}</h1>
-                <img src={tomato} alt="tomato" className="img" />
-                <p className="quantity">In Stock: {item.B}</p>
+                <img
+                  src="https://images.unsplash.com/photo-1582284540020-8acbe03f4924?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=675&q=80"
+                  alt="tomato"
+                  className="img"
+                />
+                <p className="quantity">In Stock: {item.B} lbs</p>
               </div>
             ))}
           </div>
