@@ -8,6 +8,7 @@ class MainContent extends React.Component {
     super();
     this.state = {
       inventory: [],
+      currentState: false,
     };
   }
 
@@ -16,8 +17,25 @@ class MainContent extends React.Component {
       console.log(data.data.Sheet1);
       this.setState({
         inventory: data.data.Sheet1,
+        currentState: false,
       });
     });
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    console.log(prevState);
+    console.log(this.state);
+
+    if (prevState.inventory !== this.state.inventory) {
+      if (this.state.currentState === false) {
+        axios.get("http://localhost:8080/").then((data) => {
+          this.setState({
+            inventory: data.data.Sheet1,
+            currentState: true,
+          });
+        });
+      }
+    }
   }
 
   render() {
@@ -25,7 +43,6 @@ class MainContent extends React.Component {
       return <div>Loading</div>;
     }
     const itemList = this.state.inventory;
-    console.log("HIIII", itemList);
     return (
       <div className="maincontent">
         <Hero />
@@ -51,64 +68,3 @@ class MainContent extends React.Component {
 }
 
 export default MainContent;
-
-{
-  /* <div className="maincontent">
-<h1 className="mainheader">From Us to You</h1>
-<ul>
-  {itemList.map((item) => (
-    <li key={item.A}>{item.A}</li>
-  ))}
-</ul>
-<ul className="content-card-list">
-  <div className="content-card">
-    <div>
-      <h1 className="content-card__header">All Organic Tomato's</h1>
-      <img src={tomato} alt="tomato" className="img" />
-      <p className="quantity">Quantity</p>
-    </div>
-    <div>
-      <h1 className="content-card__header">All Organic Potatos</h1>
-      <img src={potato} alt="tomato" className="img" />
-      <p className="quantity">Quantity</p>
-    </div>
-    <div>
-      <h1 className="content-card__header">All Organic Carrots</h1>
-      <img src={carrots} alt="tomato" className="img" />
-      <p className="quantity">Quantity</p>
-    </div>
-    <div>
-      <h1 className="content-card__header">All Organic Corn</h1>
-      <img src={corn} alt="tomato" className="img" />
-      <p className="quantity">Quantity</p>
-    </div>
-  </div>
-</ul>
-</div> */
-}
-
-{
-  /* <ul > */
-}
-
-{
-  /* <div>
-              <h1 className="content-card__header">All Organic Potatos</h1>
-              <img src={potato} alt="tomato" className="img" />
-              <p className="quantity">Quantity</p>
-            </div>
-            <div>
-              <h1 className="content-card__header">All Organic Carrots</h1>
-              <img src={carrots} alt="tomato" className="img" />
-              <p className="quantity">Quantity</p>
-            </div>
-            <div>
-              <h1 className="content-card__header">All Organic Corn</h1>
-              <img src={corn} alt="tomato" className="img" />
-              <p className="quantity">Quantity</p>
-            </div> */
-}
-
-{
-  /* </ul> */
-}
