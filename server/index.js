@@ -5,7 +5,19 @@ const PORT = 8080;
 const fs = require('fs');
 const cors = require('cors');
 const multer = require('multer');
-const fileUpload = multer({ dest: 'uploads/' });
+
+var storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, 'uploads/')
+  },
+  filename: function (req, file, cb) {
+    cb(null, 'finalData.xlsx')
+  }
+})
+
+const fileUpload = multer({ 
+  storage: storage
+ });
 
 app.use(express.static("files"));
 app.use(cors());
@@ -26,7 +38,12 @@ app.get("/", (req,res)=>{
 app.post("/upload", fileUpload.single('file'),(req,res)=>{
     console.log(req.file);
     //write fn to convert file to json
-    res.send("You are  in POST!!!");
+    const result = excelToJson({
+      sourceFile: 'uploads/'+req.file.filename
+    });
+    // let data = fs.createReadStream(req.file,'utf8');
+    // console.log(data);
+    res.status(200).json(result);
 })
 
 app.listen(PORT, () => {
