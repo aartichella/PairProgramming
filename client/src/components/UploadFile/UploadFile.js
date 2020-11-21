@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
+import "./UploadFile.scss";
 
 class UploadFile extends Component {
   constructor() {
@@ -27,11 +29,28 @@ class UploadFile extends Component {
 
   render() {
     return (
-      <form id="file-upload" name="file-upload" encType="multipart/form-data">
-        <label>Upload for File</label>
-        <input type="file" name="file" onChange={this.onChangeHandler} />
-        <button onClick={this.onSubmitHandler}>Submit</button>
-      </form>
+      <div className="upload">
+        <form
+          className="form"
+          id="file-upload"
+          name="file-upload"
+          encType="multipart/form-data"
+        >
+          <label className="label">Upload Your File</label>
+          <input
+            className="textarea"
+            type="file"
+            name="file"
+            onChange={this.onChangeHandler}
+          />
+
+          <button className="button" onClick={this.onSubmitHandler}>
+            <Link className="link2" to="/">
+              Upload File
+            </Link>
+          </button>
+        </form>
+      </div>
     );
   }
 }

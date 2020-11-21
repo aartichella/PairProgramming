@@ -14,10 +14,10 @@ function Header() {
             <li className="nav__list-item">ABOUT</li>
           </div>
           <Link to="/">
-            <img src={farmIcon} alt="farm house" />
+            <img src={farmIcon} alt="farm house" className="link" />
           </Link>
           <div className="nav__wrapper">
-            <Link to="/upload">
+            <Link className="link" to="/upload">
               <li className="nav__list-item">LOG IN</li>
             </Link>
             <img className="tractor" src={tractor} alt="tractor" />

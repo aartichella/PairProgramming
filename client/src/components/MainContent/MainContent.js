@@ -46,18 +46,18 @@ class MainContent extends React.Component {
     return (
       <div className="maincontent">
         <Hero />
-        <h1 className="mainheader">From Us to You</h1>
+        <h1 className="mainheader">From Our Farm To Your Table</h1>
         <ul className="content-card-list">
           <div className="content-card">
             {itemList.map((item) => (
               <div>
                 <h1 className="content-card__header">All Organic {item.A}</h1>
-                <img
-                  src="https://images.unsplash.com/photo-1582284540020-8acbe03f4924?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=675&q=80"
-                  alt="tomato"
-                  className="img"
-                />
+                <img src={item.C} className="img" />
                 <p className="quantity">In Stock: {item.B} lbs</p>
+                <div className="buttonwrap">
+                  <button className="buttons">+</button>
+                  <button className="buttons mod">-</button>
+                </div>
               </div>
             ))}
           </div>

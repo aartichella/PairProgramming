@@ -4,6 +4,7 @@ import Header from "./components/Header/Header";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import MainContent from "./components/MainContent/MainContent";
 import UploadFile from "./components/UploadFile/UploadFile";
+import Footer from "./components/Footer/Footer";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
             component={UploadFile}
           />
         </Switch>
+        <Footer />
       </BrowserRouter>
     </div>
   );
